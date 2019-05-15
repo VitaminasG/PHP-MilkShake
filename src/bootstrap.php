@@ -19,7 +19,3 @@ require 'src/User.php';
 $app['database'] = new Builder(
     Connection::make($app['config']['database'])
 );
-
-$user = new User($app['database']);
-
-$user->find('admin', '123456');
