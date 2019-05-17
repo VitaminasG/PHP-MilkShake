@@ -2,7 +2,7 @@
 
 return [
     'site' => [
-        'name' => 'BraveTest'
+        'name' => 'Your Site Name'
     ],
     'database' => [
         'name' => 'Brave',

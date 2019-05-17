@@ -14,6 +14,7 @@ require 'src/Router.php';
 require 'src/Request.php';
 require 'src/Database/Connection.php';
 require 'src/Database/Builder.php';
+require 'src/Hash.php';
 require 'src/User.php';
 
 $app['database'] = new Builder(
