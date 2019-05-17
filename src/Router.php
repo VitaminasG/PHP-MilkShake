@@ -4,6 +4,12 @@
 class Router
 {
 
+
+    /**
+     * Array list for URL with Request method type.
+     *
+     * @var array
+     */
     protected $routes = [
         'GET' => [],
         'POST' => [],
@@ -20,6 +26,8 @@ class Router
      */
     public static function load($file)
     {
+
+        // TODO: Improvement on the way.
         $router = new static;
         require $file;
 
@@ -28,7 +36,7 @@ class Router
 
 
     /**
-     * Add GET Request type Controller
+     * Add GET Request type Controller.
      *
      * @param $uri
      * @param $controller
@@ -40,7 +48,7 @@ class Router
     }
 
     /**
-     * Add POST Request type Controller
+     * Add POST Request type Controller.
      *
      * @param $uri
      * @param $controller
@@ -53,7 +61,7 @@ class Router
 
 
     /**
-     * Serve Responsible controller
+     * Direct to requested Controller.
      *
      * @param $uri
      * @param $methodType
@@ -73,7 +81,7 @@ class Router
 
 
     /**
-     * Serve 404 view
+     * Serve 404 view.
      *
      * @return mixed
      */

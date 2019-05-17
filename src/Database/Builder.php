@@ -130,6 +130,8 @@ class Builder
      */
     public function get($table, $where, array $options = [])
     {
+        // TODO: After refactor gives stack error. Need to investigate action string or action() default array values.
+
         $action = ['action' => "SELECT {$this->selector($options)} FROM {$table} WHERE {$where}"];
 
         $this->action($action['action']);
@@ -145,6 +147,7 @@ class Builder
     public function insert($table, $fields = array())
     {
 
+        // TODO: Unfinished Insert query.
         $keys = array_keys($fields);
         $values = '';
         $i = count($fields);
