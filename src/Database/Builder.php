@@ -113,7 +113,7 @@ class Builder
         $query = $this->pdo->prepare($action);
         $query->execute($values);
 
-        if(!$PDO_fetch_style['fetch_style']){
+        if(!$PDO_fetch_style){
 
             $this->setResults($query->fetchAll($PDO_fetch_style['fetch_style'] = PDO::FETCH_CLASS));
         }

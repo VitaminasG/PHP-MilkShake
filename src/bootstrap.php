@@ -1,9 +1,5 @@
 <?php
 
-// Report running errors
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 $app = [];
 
 $app['config'] = require 'config.php';
