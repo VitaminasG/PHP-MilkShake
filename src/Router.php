@@ -2,39 +2,24 @@
 
 namespace App;
 
+use Exception;
+
+
 class Router
 {
-
 
     /**
      * Array list for URL with Request method type.
      *
      * @var array
      */
-    protected $routes = [
-        'GET' => [],
-        'POST' => [],
-        'DELETE' => [],
-        'PATCH' => [],
-    ];
+    public $routes = [];
 
-
-    /**
-     * Load Web router list
-     *
-     * @param $file
-     * @return Router
-     */
-    public static function load($file)
+    public function start()
     {
 
-        // TODO: Improvement on the way.
-        $router = new static;
-        require $file;
-
-        return $router;
+        return require './web.php';
     }
-
 
     /**
      * Add GET Request type Controller.
@@ -67,6 +52,7 @@ class Router
      * @param $uri
      * @param $methodType
      * @return mixed
+     * @throws Exception
      */
     public function direct($uri, $methodType)
     {
@@ -74,10 +60,28 @@ class Router
         if ( !array_key_exists($uri, $this->routes[$methodType]) ){
 
             return $this->notFound();
-
         }
 
-        return $this->routes[$methodType][$uri];
+        return $this->callAction(
+
+        $action = explode("@", $this->routes[$methodType][$uri])
+        );
+    }
+
+    /**
+     * Execute an action on the controller.
+     *
+     * @param $action
+     * @return mixed
+     * @throws Exception
+     */
+    // TODO: Unfinished Controller handling.
+    public function callAction($action = [])
+    {
+
+        $controller = new Controller();
+
+        return call_user_func_array(array($controller, $action[1]), array($parameters = null));
     }
 
 

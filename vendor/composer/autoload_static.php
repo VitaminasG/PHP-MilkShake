@@ -24,11 +24,16 @@ class ComposerStaticInit9aa6db3d7b462e4486b728a301cd13d9
         ),
     );
 
+    public static $classMap = array (
+        'App\\Controller' => __DIR__ . '/../..' . '/src/Controller.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit9aa6db3d7b462e4486b728a301cd13d9::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit9aa6db3d7b462e4486b728a301cd13d9::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit9aa6db3d7b462e4486b728a301cd13d9::$classMap;
 
         }, null, ClassLoader::class);
     }
