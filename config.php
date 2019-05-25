@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'site' => [
-        'name' => 'Your Site Name'
+    'app' => [
+        'appName' => 'Your Site Name'
     ],
     'database' => [
         'name' => 'Brave',

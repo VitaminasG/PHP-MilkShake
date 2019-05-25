@@ -1,6 +1,8 @@
 <?php
 
-$user = new User($app['config']['database']);
+use App\User;
+
+$user = new User($app->get('database'));
 
 // TODO: Testing with Fake Log in Query. After Builder refactor. Php stack error.
 

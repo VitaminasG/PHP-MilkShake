@@ -1,9 +1,10 @@
 <?php
 
+// Comment In/Out for using custom errorHandling.
 require 'src/helpers/errorHandling.php';
 
-require 'src/bootstrap.php';
+// Composer Autoload.
+require __DIR__ . '/vendor/autoload.php';
 
-$router = new Router();
-
-require Router::load('routes.php')->direct(Request::uri(), Request::method());
+// Bootstrap file
+require __DIR__ . '/src/bootstrap.php';

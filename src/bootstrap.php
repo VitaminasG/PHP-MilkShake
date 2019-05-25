@@ -1,18 +1,11 @@
 <?php
 
-$app = [];
+use App\Container as DI;
+use App\Request;
+use App\Router;
 
-$app['config'] = require 'config.php';
+$app = new DI(require './config.php');
 
-$title = $app['config']['site']['name'];
+$router = Router::class;
 
-require 'src/Router.php';
-require 'src/Request.php';
-require 'src/Database/Connection.php';
-require 'src/Database/Builder.php';
-require 'src/Hash.php';
-require 'src/User.php';
-
-$app['database'] = new Builder(
-    Connection::make($app['config']['database'])
-);
+require Router::load('routes.php')->direct(Request::uri(), Request::method());

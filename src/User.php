@@ -1,9 +1,10 @@
 <?php
 
+namespace App;
 
-/**
- * Manipulate Users data from DB.
- */
+use App\Database\Builder;
+use App\Database\Connection;
+
 class User
 {
 

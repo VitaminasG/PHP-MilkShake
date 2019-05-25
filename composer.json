@@ -1,0 +1,17 @@
+{
+  "authors": [
+    {
+      "name": "Gediminas Palsys",
+      "email": "vitaminas.g@gmail.com",
+      "homepage": "https://gediminaspalsys.uk",
+      "role": "Developer"
+    }
+  ],
+  "license": [
+    "GPL-3.0-or-later"
+  ],
+  "autoload": {
+    "psr-4": {"App\\": "src/"},
+    "files": ["src/helpers/main.php"]
+  }
+}

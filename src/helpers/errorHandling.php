@@ -11,7 +11,7 @@ ini_set('display_errors', 'yes');
 set_error_handler('my_error_handler');
 
 //Custom Error Handler
-function my_error_handler($number, $string, $file, $line, $context = null)
+function my_error_handler($number = null, $string = null, $file = null, $line = null, $context = null)
 {
 
     if (!(error_reporting() & $number)) {

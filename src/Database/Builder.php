@@ -1,22 +1,23 @@
 <?php
 
-/**
- * Builder - manipulate Database.
- */
+namespace App\Database;
+
+use PDO;
+
 class Builder
 {
 
     /**
      * The instance of Database Connection.
      *
-     * @var stdClass
+     * @var PDO
      */
     protected $pdo;
 
     /**
      * Fetched data for extraction.
      *
-     * @var stdClass Object
+     * @var object
      */
     protected $_results;
 
