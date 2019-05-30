@@ -25,13 +25,14 @@ Some parts of the code is using php 7.2v syntax and will be not executed
 ## Apache Server
 
 Well... this is quite big topic. I don't want to start giving you misleading instructions.
- The reasons are that your machine is running on the
-different set-up and you will be disappointed on the documentation I had given to you.
-However, if your local machine is set up properly and you know what you expecting, just leave
- .htaccess file as it is. This project is developed on Apache2 and not designed for  
- [nginx](https://nginx.org/en/).
-Some of you may experience problems to handle the logs/error.log and letting
-the index.php to be executed. It just your server not letting to do this. 
+ The reasons are that your machine is running on the different set-up and you will be disappointed
+ on the documentation I had given to you. However, if your local machine is set up properly
+ and you know what you expecting, just leave .htaccess file as it is. This project is developed
+ on Apache2 and __not__ designed for nginx.
+ 
+ Some of you may experience 
+ problems to handle the logs/error.log and letting the index.php to be executed. It just your
+ server not letting to do this. 
  
 ## Database
 
