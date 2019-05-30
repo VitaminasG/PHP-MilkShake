@@ -8,11 +8,11 @@
 
             <ul>
 
-                <?php foreach($data as $a => $b) : ?>
-
-                        <li><?= $a ?> - <?= $b ?></li>
-
-                <?php endforeach; ?>
+<!--                --><?php //foreach($data as $a => $b) : ?>
+<!---->
+<!--                        <li>--><?//= $a ?><!-- - --><?//= $b ?><!--</li>-->
+<!---->
+<!--                --><?php //endforeach; ?>
 
             </ul>
 

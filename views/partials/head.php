@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 
     <!-- Title -->
-    <title><?php echo $title; ?></title>
+    <title><?= $data->title; ?></title>
 
     <!-- Bootstrap Css-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -12,7 +12,7 @@
           crossorigin="anonymous">
 
     <!-- Custom Css-->
-    <link rel="stylesheet" href="../../public/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 <?php require('nav.php'); ?>

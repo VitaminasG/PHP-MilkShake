@@ -3,7 +3,7 @@
 // Report running errors
 
 // Constants
-define('ERROR_LOG_FILE', $_SERVER['DOCUMENT_ROOT'].'/logs/error_log.log');
+define('ERROR_LOG_FILE', $_SERVER['DOCUMENT_ROOT'].'../logs/error_log.log');
 
 // Settings for display error
 error_reporting(E_ALL | E_STRICT );

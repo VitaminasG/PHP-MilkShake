@@ -12,19 +12,39 @@ class Container
      *
      * @var array
      */
-    protected $config;
+    private $config;
 
 
     /**
      * The instance of Dependency Injection.
      *
-     * @param array $config
      */
-    public function __construct($config = [])
+    public function __construct()
     {
-        $this->config = $config;
+
+        $this->config = $this->defaultConf();
     }
 
+
+    /**
+     *Get default configuration file.
+     *
+     * @return array
+     *
+     * @throws Exception
+     */
+    private function defaultConf()
+    {
+
+        $file = basePath('config');
+
+        if( !basePath('config') ) {
+
+            throw new Exception('Can not find config file!');
+        }
+
+        return $file;
+    }
 
     /**
      * Add new item to Container.
@@ -37,7 +57,6 @@ class Container
 
         $this->config[$key] = $value;
     }
-
 
     /**
      * Get the item from the Container.
@@ -61,7 +80,7 @@ class Container
      *
      * @return string
      */
-    public function name()
+    public function appName()
     {
 
         $result = findElement($this->config, 'appName');

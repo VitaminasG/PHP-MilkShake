@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title><?= $data->title; ?></title>
 </head>
 <body>
 <h1>404 - Page not Found</h1>

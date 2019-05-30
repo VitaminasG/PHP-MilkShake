@@ -2,9 +2,6 @@
 
 namespace App;
 
-use Exception;
-
-
 class Router
 {
 
@@ -14,12 +11,6 @@ class Router
      * @var array
      */
     public $routes = [];
-
-    public function start()
-    {
-
-        return require './web.php';
-    }
 
     /**
      * Add GET Request type Controller.
@@ -45,14 +36,12 @@ class Router
         $this->routes['POST'][$uri] = $controller;
     }
 
-
     /**
      * Direct to requested Controller.
      *
      * @param $uri
      * @param $methodType
      * @return mixed
-     * @throws Exception
      */
     public function direct($uri, $methodType)
     {
@@ -64,26 +53,24 @@ class Router
 
         return $this->callAction(
 
-        $action = explode("@", $this->routes[$methodType][$uri])
+            ...explode("@", $this->routes[$methodType][$uri])
         );
     }
 
     /**
      * Execute an action on the controller.
      *
-     * @param $action
+     * @param $controller
+     * @param array $action
      * @return mixed
-     * @throws Exception
      */
-    // TODO: Unfinished Controller handling.
-    public function callAction($action = [])
+    public function callAction($controller, $action = [])
     {
 
-        $controller = new Controller();
+        $obj = new $controller;
 
-        return call_user_func_array(array($controller, $action[1]), array($parameters = null));
+        return call_user_func_array(array($obj, $action), array($parameters = []));
     }
-
 
     /**
      * Serve 404 view.
@@ -92,7 +79,8 @@ class Router
      */
     public function notFound(){
 
-        return 'Controllers/404.php';
-    }
+        $controller = new \App\Controller;
 
+        return $this->callAction($controller, 'notFound');
+    }
 }

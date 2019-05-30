@@ -1,10 +1,14 @@
 <?php
 
-use App\Container as DI;
+use App\Container as App;
 use App\Request;
+use App\Router;
 
-$app = new DI(require './config.php');
+$app = new App();
+$router = new Router();
 
-require './web.php';
+// Import web route.
+require_once 'routes/web.php';
 
+// Catch Request.
 $router->direct(Request::uri(), Request::method());

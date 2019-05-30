@@ -3,25 +3,60 @@
 namespace App;
 
 
-// TODO: Unfinished Controller handling.
 class Controller
 {
 
+
+    public function __construct()
+    {
+
+        //
+    }
+
+
+    /**
+     * Get the main Page.
+     *
+     * @return mixed
+     */
     public function index()
     {
 
-        return require 'views/index.view.php';
+        $title = "Home";
+
+        return view('index', compact('title'));
     }
 
-    // TODO: Testing with Fake Log in Query. After Builder refactor. Php stack error.
+
+    /**
+     * Get Dashboard Page.
+     *
+     * @return mixed
+     */
     public function dashboard()
     {
+
+        $title = "Dashboard";
 
 //        $user = new User($app->get('database'));
 //
 //        $data = $user->findUser('admin@example.com');
 
-        return require 'views/dashboard.view.php';
+        return view('dashboard', compact('title'));
+    }
+
+
+    /**
+     * Get 404 - Not Found Page.
+     *
+     * @return mixed
+     */
+    public function notFound()
+    {
+
+        $title = "404 - Not Found";
+
+        return view('404', compact('title'));
     }
 
 }
