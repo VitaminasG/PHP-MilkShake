@@ -1,6 +1,7 @@
 <nav>
     <nav class="navbar fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="/"><?= $app = 'Default'?></a>
+        <?php $app = new App\Container; ?>
+        <a class="navbar-brand" href="/"><?= $app->appName(); ?></a>
         <ul class="nav justify-content-end">
             <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>

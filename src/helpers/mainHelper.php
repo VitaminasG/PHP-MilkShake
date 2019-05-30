@@ -13,13 +13,33 @@ function dd( ...$var ) {
 }
 
 /**
- * Get file directory.
+ * Get Root folder.
+ *
+ * @return string
+ */
+function basePath() {
+
+    return $_SERVER["DOCUMENT_ROOT"] . "../";
+}
+
+/**
+ * Get file destination.
  *
  * @param string $file
+ * @return string
+ */
+function filePath( string $file ) {
+
+    return basePath()."{$file}.php";
+}
+
+/**
+ * Require file destination.
  *
+ * @param string $file
  * @return mixed
  */
-function basePath( string $file ) {
+function requirePath( string $file ) {
 
     return require $_SERVER["DOCUMENT_ROOT"] . "../{$file}.php";
 }

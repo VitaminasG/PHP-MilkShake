@@ -2,15 +2,18 @@
 
 namespace App;
 
+use App\Container as App;
+
 
 class Controller
 {
 
+    protected $appName;
 
-    public function __construct()
+    public function __construct(App $app)
     {
 
-        //
+        $this->appName = $app->appName();
     }
 
 

@@ -36,14 +36,12 @@ class Container
     private function defaultConf()
     {
 
-        $file = basePath('config');
-
-        if( !basePath('config') ) {
+        if( !file_exists(filePath('config')) ) {
 
             throw new Exception('Can not find config file!');
         }
 
-        return $file;
+        return requirePath('config');
     }
 
     /**
@@ -68,6 +66,7 @@ class Container
     public function get($key)
     {
         if(!array_key_exists($key, $this->config)){
+
             throw new Exception("The {$key} do not exist in the config file.");
         }
 
