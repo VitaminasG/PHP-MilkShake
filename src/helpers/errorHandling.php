@@ -3,7 +3,9 @@
 // Report running errors
 
 // Constants
-define('ERROR_LOG_FILE', $_SERVER['DOCUMENT_ROOT'].'../logs/error_log.log');
+
+define('ERROR_LOG_FILE', basePath() . 'logs/error_log.log');
+
 
 // Settings for display error
 error_reporting(E_ALL | E_STRICT );
@@ -25,7 +27,7 @@ function my_error_handler($number = null, $string = null, $file = null, $line = 
     $error .= "File: {$file}\n";
     $error .= "Line: {$line}\n";
     $error .= "Time: ".date('l jS \of F Y h:i:s A')."\n";
-    $error .= "Context:\n" . print_r($context, TRUE) . "\n\n";
+    $error .= "Context:\n" . print_r($context, TRUE) . "\n";
 
     error_log($error, 3, ERROR_LOG_FILE);
 }

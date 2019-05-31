@@ -12,7 +12,11 @@
   ],
   "autoload": {
     "psr-4": {"App\\": "src/"},
-    "files": ["src/helpers/mainHelper.php"]
+    "files": [
+      "src/helpers/mainHelper.php",
+      "src/helpers/errorHandling.php",
+      "src/helpers/viewHelper.php"
+    ]
   },
   "require": {
     "php": "^7.2",

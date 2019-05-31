@@ -18,6 +18,7 @@ class Container
     /**
      * The instance of Dependency Injection.
      *
+     * @throws Exception
      */
     public function __construct()
     {

@@ -25,12 +25,12 @@ function basePath() {
 /**
  * Get file destination.
  *
- * @param string $file
+ * @param string $fileFromBasePath
  * @return string
  */
-function filePath( string $file ) {
+function filePath( string $fileFromBasePath ) {
 
-    return basePath()."{$file}.php";
+    return basePath()."{$fileFromBasePath }.php";
 }
 
 /**
@@ -76,46 +76,4 @@ function first( $array ) {
     }
 
     return $array[0];
-}
-
-/**
- * Pass a template with value from string location.
- *
- * @param $view string
- * @param $array array
- *
- * @return mixed
- */
-function view( string $view, array $array ) {
-
-    $data = collectObj($array);
-
-    return require $_SERVER["DOCUMENT_ROOT"] . "../views/{$view}.view.php";
-}
-
-/**
- * Build and return a stdClass object.
- *
- * @param mixed $array
- *
- * @return stdClass
- */
-function collectObj( $array ) {
-
-    $obj = new stdClass();
-
-    if( !is_array($array) ) {
-
-        return $array;
-
-    } else {
-
-        foreach ( $array as $a => $b) {
-
-            $obj->$a = $b;
-        }
-
-        return $obj;
-    }
-
 }

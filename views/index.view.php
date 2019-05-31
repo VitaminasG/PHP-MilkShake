@@ -1,4 +1,5 @@
-<?php require('partials/head.php'); ?>
+[@head]
+[@nav]
 
     <div class="container">
 
@@ -10,4 +11,4 @@
 
     </div>
 
-<?php require('partials/footer.php'); ?>
+[@footer]

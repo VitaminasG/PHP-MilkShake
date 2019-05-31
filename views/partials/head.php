@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 
     <!-- Title -->
-    <title><?= $data->title; ?></title>
+    <title>{title}</title>
 
     <!-- Bootstrap Css-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -15,4 +15,3 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<?php require('nav.php'); ?>

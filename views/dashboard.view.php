@@ -1,4 +1,5 @@
-<?php require('partials/head.php'); ?>
+[@head]
+[@nav]
 
     <div class="container">
 
@@ -6,18 +7,8 @@
 
             <h1 class="text-center">Dashboard</h1>
 
-            <ul>
-
-<!--                --><?php //foreach($data as $a => $b) : ?>
-<!---->
-<!--                        <li>--><?//= $a ?><!-- - --><?//= $b ?><!--</li>-->
-<!---->
-<!--                --><?php //endforeach; ?>
-
-            </ul>
-
         </div>
 
     </div>
 
-<?php require('partials/footer.php'); ?>
+[@footer]

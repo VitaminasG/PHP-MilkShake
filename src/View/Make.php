@@ -9,54 +9,119 @@ use Exception;
 class Make
 {
 
+    /**
+     * Default value of file name.
+     *
+     * @var null
+     */
     private $file = null;
 
-    private $extra = [];
-
+    /**
+     * Locked direction to view folder.
+     *
+     * @var string|null
+     */
     protected $pathTo = null;
 
-    function __construct($file)
+    /**
+     * Parameters to view.
+     *
+     * @var array
+     */
+    protected $parameters = [];
+
+    /**
+     * Content of file.
+     *
+     * @var mixed
+     */
+    private $context;
+
+    /**
+     * Create Operator for Class View.
+     *
+     * @param $file string
+     * @param array $array
+     * @throws Exception
+     */
+    function __construct($file, $array = [])
     {
         $this->file = $file;
-        $this->pathTo = filePath("views/{$file}");
+        $this->pathTo = filePath("views/{$file}.view");
+        $this->parameters = $array;
+        $this->context = $this->getFile();
     }
 
-    protected function __($getValue)
+    /**
+     * Same as getExtra just shorter.
+     *
+     * @param $getValue string
+     * @return mixed
+     * @throws Exception
+     */
+    protected function getPartials($getValue)
     {
-       return $this->getExtra($getValue);
-    }
 
-    private function getExtra($getValue)
-    {
-        if( !array_key_exists($getValue, $this->extra) ){
+        if( !array_key_exists($getValue, $this->parameters) ){
 
-            throw new Exception('Before retrieving an item, you need to add first.');
+            throw new Exception("Partial with name '{$getValue}'' do not exist on array.");
         }
 
-        return $this->extra[$getValue];
+        return file_get_contents($this->parameters[$getValue]);
     }
 
-    protected function setExtra($value)
+    /**
+     * Setter for extra items.
+     *
+     * @param $value
+     */
+    public function setPartials($value)
     {
 
-        $this->extra[$value] = $value;
+        $this->parameters[$value] = filePath("views/partials/{$value}");
     }
 
+    /**
+     * Get the file if exist.
+     *
+     * @return mixed
+     * @throws Exception
+     */
     protected function getFile()
     {
 
         if( !file_exists($this->pathTo) ) {
 
-            throw new Exception('Can not find config file!');
+            throw new Exception('Can\'t find a template file!');
         }
 
-        return requirePath($this->pathTo);
+        return file_get_contents($this->pathTo);
     }
 
-    public function render($param = [])
+    protected function replace()
     {
 
+        foreach ($this->parameters as $a => $b) {
 
+            $this->context = str_replace(
+                "[@".$a."]", $this->getPartials($a), $this->context
+            );
+        }
+
+        foreach ($this->parameters as $a => $b) {
+
+            $this->context = str_replace(
+                "{".$a."}", $b, $this->context
+            );
+        }
+    }
+
+    public function render()
+    {
+
+        $this->replace();
+
+        echo $this->context;
     }
 
 }

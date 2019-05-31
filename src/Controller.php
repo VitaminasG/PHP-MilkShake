@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Container as App;
+use App\View\View;
 
 
 class Controller
@@ -48,6 +49,12 @@ class Controller
         return view('dashboard', compact('title'));
     }
 
+    public function demo()
+    {
+        $something = 'something';
+
+        return view('demo', compact('something'));
+    }
 
     /**
      * Get 404 - Not Found Page.
