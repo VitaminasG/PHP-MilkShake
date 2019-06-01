@@ -32,9 +32,9 @@ class Controller
      */
     public function demo()
     {
-        $something = 'something';
+        $slogan= 'Cover your Demo Page.';
 
-        return view('demo', compact('something'), 'demo');
+        return view('demo', compact('slogan'), 'demo');
     }
 
     /**
