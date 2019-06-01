@@ -1,11 +1,13 @@
 <?php
 
+use App\Routes\BaseRouter as Router;
+
 /**
  * ================
  * Web Router File.
  * ================
  */
 
-$router->get('', 'App\Controller@index');
+Router::get('', 'App\Controller@index');
 
-$router->get('demo', 'App\Controller@demo');
+Router::get('demo', 'App\Controller@demo');

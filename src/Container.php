@@ -4,6 +4,7 @@ namespace App;
 
 use App\Database\Builder;
 use App\Database\Connection;
+use App\Routes\BaseRouter;
 use Exception;
 
 class Container
@@ -16,7 +17,26 @@ class Container
      */
     private $config;
 
+    /**
+     * The instance of PDO.
+     *
+     * @var \PDO
+     */
     private $connection;
+
+    /**
+     * Request uri.
+     *
+     * @var
+     */
+    private $url;
+
+    /**
+     * Request method.
+     *
+     * @var
+     */
+    private $method;
 
     /**
      * The instance of Dependency Injection.
@@ -30,9 +50,8 @@ class Container
         $this->connection = Connection::make($this->get('database'));
     }
 
-
     /**
-     *Get default configuration file.
+     * Get default configuration file.
      *
      * @return array
      *
@@ -49,10 +68,55 @@ class Container
         return requirePath('config');
     }
 
+
+    /**
+     * Direct traffic to dedicated router.
+     *
+     */
+    public function direct()
+    {
+        $router = new Router( new BaseRouter() );
+
+        $router->direct($this->getUrl(), $this->getMethod());
+    }
+
+    /**
+     * Get Request uri.
+     *
+     * @return string
+     */
+    protected function getUrl()
+    {
+
+        $this->url = \App\Request::uri();
+
+        return $this->url;
+    }
+
+    /**
+     * Get Request method.
+     *
+     * @return string
+     */
+    protected function getMethod()
+    {
+
+        $this->method = \App\Request::method();
+
+        return $this->method;
+    }
+
+    /**
+     * Create a new Builder instance.
+     *
+     * @return Builder
+     */
     public function query()
     {
 
-        return (new Builder($this->connection));
+        $builder = new Builder( $this->connection );
+
+        return $builder;
     }
 
     /**

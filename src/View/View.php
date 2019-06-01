@@ -14,7 +14,6 @@ class View
      */
     private static $instance = null;
 
-
     /**
      * Get the instance of itself if not null.
      *

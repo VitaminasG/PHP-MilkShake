@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Routes\BaseRouter;
+
 class Router
 {
 
@@ -13,27 +15,14 @@ class Router
     public $routes = [];
 
     /**
-     * Add GET Request type Controller.
-     *
-     * @param $uri
-     * @param $controller
+     * The instance of Router.
+
+     * @param BaseRouter $routes
      */
-    public function get($uri, $controller)
+    public function __construct(BaseRouter $routes)
     {
 
-        $this->routes['GET'][$uri] = $controller;
-    }
-
-    /**
-     * Add POST Request type Controller.
-     *
-     * @param $uri
-     * @param $controller
-     */
-    public function post($uri, $controller)
-    {
-
-        $this->routes['POST'][$uri] = $controller;
+        $this->routes = $routes::returnRoutes();
     }
 
     /**
@@ -68,7 +57,7 @@ class Router
     {
         $obj = new $controller;
 
-        return call_user_func_array([$obj, $action],[ $parameters = [] ]);
+        return call_user_func_array([$obj, $action], [ $parameters = [] ] );
     }
 
     /**

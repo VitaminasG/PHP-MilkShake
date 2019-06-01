@@ -26,7 +26,7 @@ Some parts of the code is using php 7.2v syntax and will be not executed
 
 ## Demo Resources
 
-Added a boilerplate files to test a project. This should help to improve and expand application.
+Added a boilerplate files to test a project. This should help quicker to expand and improve an application.
 
 #### Demo File List:
 
@@ -56,5 +56,5 @@ inside the root folder directory with your details.
 
 ## Class imports
 
-Class and Helper function imports is done with Composer Autoload. You will need to dig inside
- on __root dir__ and edit composer.json file to get desirable result.
+Composer autoload is responsible to load all class'es and helper functions. 
+You will need to dig inside on __root dir__ and edit composer.json file to get desirable result.

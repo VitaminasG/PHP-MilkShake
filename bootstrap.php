@@ -1,14 +1,13 @@
 <?php
 
-use App\Request;
-use App\Router;
+use App\Container as App;
 
-$router = new Router();
+/**
+ * ===========================
+ * Bootstrap your Application.
+ * ===========================
+ */
 
-//TODO: Improve route import.
+$app = new App();
 
-// Import web route.
-require_once 'routes/web.php';
-
-// Catch Request.
-$router->direct(Request::uri(), Request::method());
+$app->direct();
