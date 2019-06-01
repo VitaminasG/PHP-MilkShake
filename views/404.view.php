@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title><?= $data->title; ?></title>
-</head>
-<body>
-<h1>404 - Page not Found</h1>
-<h3>
-    <a href="/">Go Back to Main Page</a>
-</h3>
+[@404.head]
+
+<body class="text-center">
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+    <main role="main" class="mb-auto mt-auto inner cover">
+        <h2>404 - Page not Found</h2>
+
+        <p class="lead">
+            <a href="/" class="btn btn-lg btn-secondary">Go Back to Main Page</a>
+        </p>
+    </main>
+
+</div>
 </body>
 </html>

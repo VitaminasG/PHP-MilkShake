@@ -52,12 +52,7 @@ function requirePath( string $file ) {
  *
  * @return array|mixed|string
  */
-function findElement( $array, $key ) {
-
-    if( !is_array($array) ){
-
-        return null;
-    }
+function findElement( array $array, $key ) {
 
     return array_column($array, $key);
 }
@@ -69,11 +64,18 @@ function findElement( $array, $key ) {
  *
  * @return mixed|null
  */
-function first( $array ) {
-
-    if( !is_array($array) ){
-        return null;
-    }
+function first( array $array ) {
 
     return $array[0];
+}
+
+/**
+ * Sanitize value.
+ *
+ * @param $string
+ * @return string
+ */
+function esc(string $string) {
+
+    return htmlentities($string, ENT_QUOTES, 'UTF-8');
 }

@@ -31,6 +31,13 @@ class Make
     protected $parameters = [];
 
     /**
+     * Partials for view.
+     *
+     * @var array
+     */
+    protected $partials = [];
+
+    /**
      * Content of file.
      *
      * @var mixed
@@ -53,7 +60,7 @@ class Make
     }
 
     /**
-     * Same as getExtra just shorter.
+     * Getter for partials.
      *
      * @param $getValue string
      * @return mixed
@@ -62,27 +69,47 @@ class Make
     protected function getPartials($getValue)
     {
 
-        if( !array_key_exists($getValue, $this->parameters) ){
+        if( !array_key_exists($getValue, $this->partials) ) {
 
-            throw new Exception("Partial with name '{$getValue}'' do not exist on array.");
+            throw new Exception("Partial with name '{$getValue}' do not exist on array.");
+
+        } else {
+
+            if( file_exists($this->partials[$getValue]) ) {
+
+                return file_get_contents($this->partials[$getValue]);
+            }
         }
-
-        return file_get_contents($this->parameters[$getValue]);
     }
 
     /**
-     * Setter for extra items.
+     * Setter for partials.
      *
-     * @param $value
+     * @param array $values
      */
-    public function setPartials($value)
+    public function setPartials( array $values )
     {
 
-        $this->parameters[$value] = filePath("views/partials/{$value}");
+        $default = ['head', 'nav', 'footer'];
+
+        if( !empty($values) && empty($this->partials)) {
+
+            foreach ( $values as $a ) {
+
+                $this->partials[$a] = filePath("views/partials/{$a}");
+            }
+
+        } else {
+
+            foreach ( $default as $b ) {
+
+                $this->partials[$b] = filePath("views/partials/{$b}");
+            }
+        }
     }
 
     /**
-     * Get the file if exist.
+     * Get file content if exist.
      *
      * @return mixed
      * @throws Exception
@@ -98,30 +125,66 @@ class Make
         return file_get_contents($this->pathTo);
     }
 
-    protected function replace()
+    /**
+     * Replace tags with required data.
+     *
+     * @throws Exception
+     */
+    protected function replace($context)
     {
 
-        foreach ($this->parameters as $a => $b) {
+        // Change partials [@$var] tags.
+        foreach ($this->partials as $a => $b) {
 
-            $this->context = str_replace(
-                "[@".$a."]", $this->getPartials($a), $this->context
+            $context = str_replace(
+                "[@".$a."]", $this->getPartials($a), $context
             );
         }
 
+        // Change variables {$var} tags.
         foreach ($this->parameters as $a => $b) {
 
-            $this->context = str_replace(
-                "{".$a."}", $b, $this->context
+            $context = str_replace(
+                "{".$a."}", $b, $context
             );
         }
+
+        return $context;
     }
 
+    /**
+     * Export the complete view template with buffer.
+     *
+     * @throws Exception
+     *
+     * @return mixed
+     */
     public function render()
     {
 
-        $this->replace();
+        // Check buffer 1/0.
+        $level = ob_get_level();
 
-        echo $this->context;
+        // Start buffer with Callback.
+        ob_start([$this, 'replace']);
+
+        try {
+
+           print $this->context;
+
+        } catch (Exception $e) {
+
+            while (ob_get_level() > $level)
+            {
+                // Clean buffer catch.
+                ob_end_clean();
+            }
+
+            // Throw catch Exception.
+            throw $e;
+        }
+
+        // End and Return buffer with flush.
+        return ob_end_flush();
     }
-
 }

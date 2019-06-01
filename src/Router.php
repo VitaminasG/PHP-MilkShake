@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\Container as App;
-
 class Router
 {
 
@@ -68,11 +66,9 @@ class Router
      */
     public function callAction($controller, $action = [])
     {
-        $app = new App();
+        $obj = new $controller;
 
-        $obj = new $controller($app);
-
-        return call_user_func_array(array($obj, $action), array($parameters = []));
+        return call_user_func_array([$obj, $action],[ $parameters = [] ]);
     }
 
     /**
@@ -82,9 +78,7 @@ class Router
      */
     public function notFound(){
 
-        $app = new App();
-
-        $controller = new Controller($app);
+        $controller = new Controller();
 
         return $this->callAction($controller, 'notFound');
     }

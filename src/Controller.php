@@ -2,71 +2,50 @@
 
 namespace App;
 
-use App\Container as App;
-use App\View\View;
-
 
 class Controller
 {
 
-    protected $appName;
-
-    public function __construct(App $app)
+    public function __construct()
     {
-
-        $this->appName = $app->appName();
+        //
     }
 
 
     /**
      * Get the main Page.
      *
-     * @return mixed
+     * @return \App\View\
+     * @throws \Exception
      */
     public function index()
     {
 
-        $title = "Home";
-
-        return view('index', compact('title'));
+        return view('index');
     }
-
 
     /**
-     * Get Dashboard Page.
+     * Get Demo Page.
      *
-     * @return mixed
+     * @return \App\View\
+     * @throws \Exception
      */
-    public function dashboard()
-    {
-
-        $title = "Dashboard";
-
-//        $user = new User($app->get('database'));
-//
-//        $data = $user->findUser('admin@example.com');
-
-        return view('dashboard', compact('title'));
-    }
-
     public function demo()
     {
         $something = 'something';
 
-        return view('demo', compact('something'));
+        return view('demo', compact('something'), 'demo');
     }
 
     /**
      * Get 404 - Not Found Page.
      *
-     * @return mixed
+     * @return \App\View\
+     * @throws \Exception
      */
     public function notFound()
     {
 
-        $title = "404 - Not Found";
-
-        return view('404', compact('title'));
+        return view('404', [], '404');
     }
-
 }

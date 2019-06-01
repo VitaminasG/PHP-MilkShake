@@ -30,7 +30,6 @@ class View
         return static::$instance;
     }
 
-
     /**
      * Create and return static self.
      *
@@ -45,10 +44,10 @@ class View
     /**
      * Pass to non-static Class Make
      *
-     * @param $file string File want to render.
-     * @param array $array Pass array to the Operator.
+     * @param string $file Filename to render.
+     * @param array $array Data to render.
      *
-     * @return Make($file) Pass to fresh instance.
+     * @return Make
      * @throws Exception
      */
     public function init($file, $array = [])

@@ -1,13 +1,9 @@
-<nav>
-    <nav class="navbar fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="/"> {Name} </a>
-        <ul class="nav justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard">Dashboard</a>
-            </li>
-        </ul>
-    </nav>
-</nav>
+<header class="masthead mb-auto">
+    <div class="inner">
+        <h3 class="masthead-brand">Your Site Name</h3>
+        <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="/">Home</a>
+            <a class="nav-link" href="/demo">Demo</a>
+        </nav>
+    </div>
+</header>
