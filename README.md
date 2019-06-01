@@ -1,5 +1,8 @@
 # PHP - vanilla milkshake.
 
+![Image of Vanilla MilkShake](https://github.com/VitaminasG/PHP-MilkShake/blob/master/Screenshot%20.png)
+
+
 Hi! It's a mini PHP, MySQL and ~~JavasScript~~ OOP application which use Model-View-Controller (MVC) architectural pattern.
 A current state of the project is unfinished and will be updated constantly.
  
