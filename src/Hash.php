@@ -15,7 +15,7 @@ class Hash
     protected $rounds = 10;
 
     /**
-     * Create a new hasher instance.
+     * Create a new Hash instance.
      *
      * @param  array  $options
      * @return void
@@ -85,6 +85,7 @@ class Hash
      */
     protected function cost(array $options = [])
     {
+
         return $options['rounds'] ?? $this->rounds;
     }
 

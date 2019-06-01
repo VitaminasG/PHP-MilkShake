@@ -19,7 +19,7 @@ class Builder
      *
      * @var object
      */
-    protected $_results;
+    protected $results;
 
 
     /**
@@ -32,7 +32,7 @@ class Builder
     /**
      * Create new Builder instance.
      *
-     * @param $pdo
+     * @param PDO $pdo
      * @param array $options
      */
     public function __construct($pdo, array $options = [])
@@ -75,7 +75,7 @@ class Builder
     public function setResults($results)
     {
 
-        $this->_results = $results;
+        $this->results = $results;
     }
 
 
@@ -87,18 +87,18 @@ class Builder
     public function getResults()
     {
 
-        return $this->_results;
+        return $this->results;
     }
-
 
     /**
      * Getter first fetch array.
      *
      * @return mixed
      */
-    public function first(){
+    public function first()
+    {
 
-        return $this->_results[0];
+        return $this->results[0];
     }
 
     /**
@@ -121,7 +121,6 @@ class Builder
 
     }
 
-
     /**
      * Action Type - Select.
      *
@@ -131,7 +130,6 @@ class Builder
      */
     public function get($table, $where, array $options = [])
     {
-        // TODO: After refactor gives stack error. Need to investigate action string or action() default array values.
 
         $action = ['action' => "SELECT {$this->selector($options)} FROM {$table} WHERE {$where}"];
 

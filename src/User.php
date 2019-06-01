@@ -2,53 +2,57 @@
 
 namespace App;
 
-use App\Database\Builder;
-use App\Database\Connection;
+use Exception;
 
 class User
 {
 
+    /**
+     * Instance of Query Builder.
+     *
+     * @var Database\Builder
+     */
     protected $query;
-    protected $data, $authenticated;
-
-    public function __construct($config)
-    {
-
-        $this->query = new Builder(Connection::make($config));
-    }
 
     /**
-     * Sanitize value.
+     * User data.
      *
-     * @param $string
-     * @return string
+     * @var mixed
      */
-    public function esc($string)
+    protected $data;
+
+    /**
+     * Create a new User instance.
+     *
+     * @param Container $container
+     */
+    public function __construct(Container $container)
     {
 
-        return htmlentities($string, ENT_QUOTES, 'UTF-8');
+        $this->query = $container->query();
     }
-
 
     /**
      * Find a User with email address.
      *
      * @param null $email
      * @return bool|mixed
+     *
+     * @throws Exception
      */
     public function findUser($email = null)
     {
         if(!$email){
 
-            return false;
+            throw new Exception(__METHOD__ .": Parameter {$email} should have email address.");
         }
 
-        $param = ['email' => $this->esc($email), 'table' => 'Users'];
+        $param = ['email' => esc($email), 'table' => 'Users'];
+
         $this->query->get($param['table'], "email ='{$param['email']}'");
 
         return $this->query->first();
     }
-
 
     /**
      * Add User to the Database.

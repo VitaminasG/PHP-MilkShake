@@ -1,11 +1,11 @@
 <?php
 
-use App\Container as App;
 use App\Request;
 use App\Router;
 
-$app = new App();
 $router = new Router();
+
+//TODO: Improve route import.
 
 // Import web route.
 require_once 'routes/web.php';

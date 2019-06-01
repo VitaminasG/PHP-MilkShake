@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Database\Builder;
+use App\Database\Connection;
 use Exception;
 
 class Container
@@ -14,6 +16,7 @@ class Container
      */
     private $config;
 
+    private $connection;
 
     /**
      * The instance of Dependency Injection.
@@ -24,6 +27,7 @@ class Container
     {
 
         $this->config = $this->defaultConf();
+        $this->connection = Connection::make($this->get('database'));
     }
 
 
@@ -45,6 +49,12 @@ class Container
         return requirePath('config');
     }
 
+    public function query()
+    {
+
+        return (new Builder($this->connection));
+    }
+
     /**
      * Add new item to Container.
      *
@@ -64,7 +74,7 @@ class Container
      * @return mixed
      * @throws Exception
      */
-    public function get($key)
+    protected function get($key)
     {
         if(!array_key_exists($key, $this->config)){
 
@@ -73,7 +83,6 @@ class Container
 
         return $this->config[$key];
     }
-
 
     /**
      * Get App name.

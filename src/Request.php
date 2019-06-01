@@ -2,9 +2,7 @@
 
 namespace App;
 
-/**
- * Class Request - Handle URL
- */
+
 class Request
 {
 
@@ -20,7 +18,6 @@ class Request
             parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/'
         );
     }
-
 
     /**
      * Get Request type
